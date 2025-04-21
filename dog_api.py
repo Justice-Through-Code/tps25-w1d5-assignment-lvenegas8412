@@ -52,22 +52,34 @@ def get_random_image(breed):
         response.raise_for_status()
         data = response.json()
         return data["message"]   
-   except requests.exceptions.RequestException:
-        print("Error: Could not fetch random image of a breed.")
+    except requests.exceptions.RequestException:
+        print(f"Error: Could not fetch random image of a {breed}.")
         return {}             
     
     # TODO: Make a request to https://dog.ceo/api/breed/{breed}/images/random
     # TODO: Return the image URL or handle errors
-    pass
+    
 
 def get_random_sub_breed_image(breed, sub_breed):
     """GET request to fetch a random image from a sub-breed."""
+    try:
+        response = requests.get("https://dog.ceo/api/breed/{breed}/{sub_breed}/images/random")
+        response.raise_for_status()
+        data = response.json()
+        return data["message"]
+    except requests.exceptions.RequestException:
+        print(f"Error: Could not fetch image for {sub_breed}.")
+        return {}
+
+    
     # TODO: Make a request to https://dog.ceo/api/breed/{breed}/{sub_breed}/images/random
     # TODO: Return the image URL or handle errors
-    pass
+    
 
 def show_breeds(breeds_dict):
     """Prints all available breeds 5 per line."""
+
+
     # TODO: Print all breeds (sorted), 5 per line
     pass
 
@@ -88,12 +100,28 @@ def main():
         elif choice == "2":
             breeds = get_all_breeds()
             breed = input("Enter breed name: ").strip().lower()
+            if breed in breeds:
+                image = get_random_image(breed)
+                print(f"Random image URL for {breed}: {image}")
+            else:
+                print(f"Image for {breed} does not exist")
             # TODO: Check if breed exists and fetch image
             # TODO: Print image URL or error message
 
         elif choice == "3":
             breeds = get_all_breeds()
             breed = input("Enter breed name: ").strip().lower()
+            if breed in breeds:
+                sub_breed =input("What sub_breed?")
+                if sub_breed in sub_breeds:
+                    image = get_random_sub_breed_image
+                    print(f'image for {sub_breed}')
+                else:
+                    print('Error')
+
+
+
+
             # TODO: Check if breed has sub-breeds
             # TODO: Ask for sub-breed, check if valid, then fetch image
             # TODO: Print image URL or error message
