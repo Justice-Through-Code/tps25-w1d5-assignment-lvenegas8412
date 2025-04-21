@@ -117,7 +117,7 @@ def main():
             breed = input("Enter breed name: ").strip().lower()
             if breed in breeds:
                 sub_breeds = breeds[breed]
-                if sub_breeds:  # If there are sub-breeds
+                if sub_breeds:  
                     print(f"Available sub-breeds for {breed}: {', '.join(sub_breeds)}")
                     sub_breed = input("Enter sub-breed name: ").strip().lower()
                     if sub_breed in sub_breeds:
@@ -127,9 +127,7 @@ def main():
                     else:
                         print('Error')
                 else:
-                    print("no sub breeds"
-            else:
-                print("no breed available")        )        
+                    print("no sub breeds")        
 
             # if breed in breeds:
             #     sub_breed =input("What sub_breed?")
