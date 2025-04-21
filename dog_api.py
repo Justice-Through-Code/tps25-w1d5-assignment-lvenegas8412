@@ -54,7 +54,7 @@ def get_random_image(breed):
         return data["message"]   
     except requests.exceptions.RequestException:
         print(f"Error: Could not fetch random image of a {breed}.")
-        return {}             
+        return None           
     
     # TODO: Make a request to https://dog.ceo/api/breed/{breed}/images/random
     # TODO: Return the image URL or handle errors
@@ -69,7 +69,7 @@ def get_random_sub_breed_image(breed, sub_breed):
         return data["message"]
     except requests.exceptions.RequestException:
         print(f"Error: Could not fetch image for {sub_breed}.")
-        return {}
+        return None
 
     
     # TODO: Make a request to https://dog.ceo/api/breed/{breed}/{sub_breed}/images/random
@@ -78,10 +78,14 @@ def get_random_sub_breed_image(breed, sub_breed):
 
 def show_breeds(breeds_dict):
     """Prints all available breeds 5 per line."""
+    sorted_breeds = sorted(breeds_dict.keys())
+    for i in range(0, len(sorted_breeds), 5):
+        print(", ".join(sorted_breeds[i:i + 5]))
+#got this code from ChatGPT
 
 
     # TODO: Print all breeds (sorted), 5 per line
-    pass
+    
 
 def main():
     while True:
@@ -112,12 +116,28 @@ def main():
             breeds = get_all_breeds()
             breed = input("Enter breed name: ").strip().lower()
             if breed in breeds:
-                sub_breed =input("What sub_breed?")
-                if sub_breed in sub_breeds:
-                    image = get_random_sub_breed_image
-                    print(f'image for {sub_breed}')
+                sub_breeds = breeds[breed]
+                if sub_breeds:  # If there are sub-breeds
+                    print(f"Available sub-breeds for {breed}: {', '.join(sub_breeds)}")
+                    sub_breed = input("Enter sub-breed name: ").strip().lower()
+                    if sub_breed in sub_breeds:
+                        image_url = get_random_sub_breed_image(breed, sub_breed)
+                        if image_url:
+                            print(f"Random image URL for {breed}")
+                    else:
+                        print('Error')
                 else:
-                    print('Error')
+                    print("no sub breeds"
+            else:
+                print("no breed available")        )        
+
+            # if breed in breeds:
+            #     sub_breed =input("What sub_breed?")
+            #     if sub_breed in sub_breed:
+            #         image = get_random_sub_breed_image
+            #         print(f'image for {sub_breed}')
+            #     else:
+            #         print('Error')
 
 
 
