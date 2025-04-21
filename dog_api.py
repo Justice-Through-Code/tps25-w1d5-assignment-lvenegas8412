@@ -129,17 +129,6 @@ def main():
                 else:
                     print("no sub breeds")        
 
-            # if breed in breeds:
-            #     sub_breed =input("What sub_breed?")
-            #     if sub_breed in sub_breed:
-            #         image = get_random_sub_breed_image
-            #         print(f'image for {sub_breed}')
-            #     else:
-            #         print('Error')
-
-
-
-
             # TODO: Check if breed has sub-breeds
             # TODO: Ask for sub-breed, check if valid, then fetch image
             # TODO: Print image URL or error message
