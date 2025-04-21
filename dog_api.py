@@ -76,12 +76,12 @@ def get_random_sub_breed_image(breed, sub_breed):
     # TODO: Return the image URL or handle errors
     
 
+#got this code from ChatGPT
 def show_breeds(breeds_dict):
     """Prints all available breeds 5 per line."""
     sorted_breeds = sorted(breeds_dict.keys())
     for i in range(0, len(sorted_breeds), 5):
         print(", ".join(sorted_breeds[i:i + 5]))
-#got this code from ChatGPT
 
 
     # TODO: Print all breeds (sorted), 5 per line
@@ -111,7 +111,8 @@ def main():
                 print(f"Image for {breed} does not exist")
             # TODO: Check if breed exists and fetch image
             # TODO: Print image URL or error message
-
+            
+#got this code from ChatGPT
         elif choice == "3":
             breeds = get_all_breeds()
             breed = input("Enter breed name: ").strip().lower()
