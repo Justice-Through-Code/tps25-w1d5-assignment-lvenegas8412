@@ -54,7 +54,7 @@ def get_random_image(breed):
         return data["message"]   
     except requests.exceptions.RequestException:
         print(f"Error: Could not fetch random image of a {breed}.")
-        return None           
+        return {}           
     
     # TODO: Make a request to https://dog.ceo/api/breed/{breed}/images/random
     # TODO: Return the image URL or handle errors
@@ -69,7 +69,7 @@ def get_random_sub_breed_image(breed, sub_breed):
         return data["message"]
     except requests.exceptions.RequestException:
         print(f"Error: Could not fetch image for {sub_breed}.")
-        return None
+        return {}
 
     
     # TODO: Make a request to https://dog.ceo/api/breed/{breed}/{sub_breed}/images/random
